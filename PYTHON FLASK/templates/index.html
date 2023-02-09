@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>
+    First Flask App
+</title>
+{% endblock %}
+
+{% block body %}
+<h1> Welcome to my first Python-Flask application ! </h1>
+    <h2>Database user :</h2>
+        <table class = "users">
+            <tr>
+                <th> ID </th>
+                <th> Username </th>
+                <th> Email adress </th>
+                <th> Date of creation </th>
+                <th> Actions </th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td> ID </td>
+                    <td>{{ user.username }}</td>
+                    <td> {{ user.email }} </td>
+                    <td>{{ user.date_creation.date() }}</td>
+                    <td>
+                        <a href='/delete/{{user.id}}'>Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    
+    <h2> Form </h2>
+        <form action="/" method="POST">
+            <label for="username"> Username </label>
+                <input type="text" name="username" id="username"> <br>
+            <label for="email">Email adress</label>
+                <input type="text" name="email" id="email"> <br>
+            <input type="submit" value="SUBMIT">
+        </form>
+{% endblock %}
